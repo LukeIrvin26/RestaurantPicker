@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">{{ randomRestaurant }}</h1>
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="12">
+      <agm-marker [latitude]="lat" [longitude]="lng">
+        <agm-snazzy-info-window [maxWidth]="1000" [maxHeight]="1000" [closeWhenOthersOpen]="true">
+          <ng-template>
+            <ngb-carousel [showNavigationArrows]="false" [showNavigationIndicators]="false">
+              <ng-template ngbSlide *ngFor="let photoRef of photoReferences">
+                <img src="{{photosURL}}key={{apiKey}}&photoreference={{photoRef}}&maxwidth=600" alt="Slide"/>
+                <div class="carousel-caption">
+                  <div class="card">
+                    <div class="card-body">
+                      <h3 class="card-title"><a href="{{ website }}" target="_blank">{{ randomRestaurant }}</a></h3>
+                      <p class="card-text">{{ address }}</p>
+                      <ng-template #t let-fill="fill">
+                        <span class="star" [class.full]="fill === 100">
+                          <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                        </span>
+                      </ng-template>
+                      <ngb-rating [(rate)]="rating" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+                      <br>
+                      <a class="card-link" [routerLink]="['/reviews']">Reviews</a>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-carousel>
+          </ng-template>
+        </agm-snazzy-info-window>
+      </agm-marker>
+    </agm-map>
+  </div>
+</div>

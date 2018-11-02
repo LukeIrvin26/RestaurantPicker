@@ -1,0 +1,41 @@
+<div class="container">
+  <form [formGroup]="optionsForm" class="">
+    <div class="row">
+      <div class="col form-group">
+        <div class="input-group mb-3">
+          <label for="address" class="input-group-text" id="addressLabel">Pick your address</label>
+          <input type="text" class="form-control" id="address" placeholder="Address..." aria-label="address"
+                 aria-describedby="addressLabel" formControlName="address"
+                 [ngClass]="{'is-invalid': submitted && addressCtrl.errors }"/>
+          <div *ngIf="submitted && addressCtrl.errors" class="invalid-feedback">
+            <div *ngIf="addressCtrl.errors['required']">Address is required</div>
+          </div>
+          <ng5-slider [(value)]="sliderValue" [options]="options"></ng5-slider>
+        </div>
+      </div>
+      <div class="col form-group">
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropToggle" ngbDropdownToggle>{{ selectedPrice.priceRange }}</button>
+          <div ngbDropdownMenu aria-labelledby="dropToggle">
+            <button class="dropdown-item" *ngFor="let price of priceRanges" (click)="changeDropText(price)">
+              {{ price.priceRange }}
+            </button>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <label for="query" class="input-group-text" id="queryLabel">Or enter search term</label>
+          <input type="search" class="form-control" id="query" placeholder="Search..." aria-label="query"
+                 aria-describedby="queryLabel" formControlName="query" [ngClass]="{'is-invalid': submitted && (selectedPrice.id === 99 && searchCtrl.value === '')}"/>
+          <div *ngIf="submitted && (selectedPrice.id === 99 && searchCtrl.value === '')" class="invalid-feedback">
+            <div *ngIf="selectedPrice.id === 99 && searchCtrl.value === ''">You must either select a price range or input a search query</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button [disabled]="loading" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

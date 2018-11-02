@@ -1,0 +1,28 @@
+agm-map {
+  height: 1000px;
+  width: 1000px;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 3rem;
+  color: #d3d3d3;
+}
+
+.full {
+  color: red;
+}
+
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: red;
+}
+
+.card {
+  color: black;
+}
+
+/*# sourceMappingURL=results.component.css.map */
