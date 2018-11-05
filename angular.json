@@ -58,7 +58,13 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "restaurant-picker:build:production"
+              "browserTarget": "restaurant-picker:build:production",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "replaceWith": "src/environments/environment.prod.ts"
+                }
+              ]
             }
           }
         },
